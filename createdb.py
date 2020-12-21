@@ -6,10 +6,8 @@ try:
     sqlite_create_table_query = '''CREATE TABLE People (
                                 id INTEGER PRIMARY KEY NOT NULL,
                                 Name STRING NOT NULL,
-                                MaSV BIGINT UNIQUE,
-                                Birthday DATE,
-                                Gender TEXT,
-                                Address TEXT
+                                MaSV BIGINT UNIQUE,                               
+                                Gender TEXT                                
                                 );'''
 
     cursor = sqliteConnection.cursor()

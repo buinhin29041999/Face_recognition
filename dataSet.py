@@ -7,7 +7,7 @@ import sqlite3
 # insert/update data to sqlite
 
 
-def insertOrUpdate(Id, Name, IDStudent, BirthDay, Gender, Address):
+def insertOrUpdate(Id, Name, IDStudent, Gender):
     conn = sqlite3.connect("FaceBase.db")
     cmd = "SELECT * FROM People WHERE ID = "+str(Id)
     cursor = conn.execute(cmd)
@@ -16,12 +16,10 @@ def insertOrUpdate(Id, Name, IDStudent, BirthDay, Gender, Address):
         isRecordExist = 1
     if(isRecordExist == 1):
         cmd = "UPDATE People SET Name='" + \
-            str(Name)+"',MaSV='"+str(IDStudent)+"',Birthday='"+str(BirthDay) + \
-            "',Gender='"+str(Gender)+"',Address='" + \
-            str(Address)+"' WHERE ID="+str(Id)
+            str(Name)+"',MaSV='"+str(IDStudent)+"',Gender='"+str(Gender)+"' WHERE ID="+str(Id)
     else:
-        cmd = "INSERT INTO People(Id,Name,MaSV,Birthday,Gender,Address) Values(" + \
-            str(Id)+",'"+str(Name)+"','"+str(IDStudent)+"','"+str(BirthDay)+"','"+str(Gender)+"','"+str(Name)+"')"
+        cmd = "INSERT INTO People(Id,Name,MaSV,Gender) Values(" + \
+            str(Id)+",'"+str(Name)+"','"+str(IDStudent)+"','"+str(Gender)+"')"
     conn.execute(cmd)
     conn.commit()
     conn.close()
@@ -32,10 +30,9 @@ cap = cv2.VideoCapture(0)
 id = input('ID = ')
 name = input('Điền tên: ')
 masv = input('Mã sinh viên: ')
-ns = input('Ngày sinh: ')
 gt = input('Giới tính: ')
-dc = input('Địa chỉ: ')
-insertOrUpdate(id, name, masv, ns, gt, dc)
+
+insertOrUpdate(id, name, masv, gt)
 
 sampleN = 0
 while 1:
