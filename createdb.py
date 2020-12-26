@@ -1,6 +1,8 @@
 import sqlite3
 
-db_name="FaceBase.db"
+db= input('Điền tên Database: ')
+db_name=db+".db"
+
 try:
     sqliteConnection = sqlite3.connect(db_name)
     sqlite_create_table_query = '''CREATE TABLE People (
